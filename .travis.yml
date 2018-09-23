@@ -1,0 +1,7 @@
+os: osx
+language: cpp
+install:
+  - brew install qt
+script:
+  - qmake Nuage.pro
+  - make
