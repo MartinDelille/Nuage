@@ -3,7 +3,7 @@ language: cpp
 install:
   - brew install qt
   - brew link qt
-  - export PATH="/usr/local/opt/qt/bin:$PATH
+  - export PATH="/usr/local/opt/qt/bin:$PATH"
 script:
   - qmake Nuage.pro
   - make
