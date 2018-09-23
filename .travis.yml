@@ -2,6 +2,7 @@ os: osx
 language: cpp
 install:
   - brew install qt
+  - brew link qt
 script:
   - qmake Nuage.pro
   - make
