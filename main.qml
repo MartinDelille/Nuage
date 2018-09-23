@@ -31,7 +31,7 @@ Rectangle {
 
         imageCapture {
             onImageCaptured: {
-                preview.source = preview
+                cloudPreview.source = preview
                 stillControls.previewAvailable = true
                 cameraUI.state = "Preview"
             }
@@ -52,9 +52,16 @@ Rectangle {
     }
 
     VideoOutput {
+        id: viewfinder
+        visible: cameraUI.state == "Capture"
+
+        x: 0
+        y: 0
+        width: parent.width - stillControls.buttonsPanelWidth
+        height: parent.height
+
         source: camera
-        anchors.fill: parent
-        focus : visible // to receive focus and capture key events when visible
+        autoOrientation: true
     }
 
     CaptureControls {
