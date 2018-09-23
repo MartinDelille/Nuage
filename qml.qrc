@@ -1,5 +1,11 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>CaptureControls.qml</file>
+        <file>Preview.qml</file>
+        <file>CameraButton.qml</file>
+        <file>FocusButton.qml</file>
+        <file>images/toolbutton.sci</file>
+        <file>images/toolbutton.png</file>
     </qresource>
 </RCC>
