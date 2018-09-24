@@ -1,5 +1,6 @@
 import QtQuick 2.11
 import QtMultimedia 5.4
+import ai.lipr.clouddetector 1.0
 
 Rectangle {
     id: cameraUI
@@ -25,6 +26,10 @@ Rectangle {
         }
     ]
 
+    CloudDetector {
+        id: detector
+    }
+
     Camera {
         id: camera
         captureMode: Camera.CaptureStillImage
@@ -32,6 +37,7 @@ Rectangle {
         imageCapture {
             onImageCaptured: {
                 cloudPreview.source = preview
+                detector.url = preview
                 stillControls.previewAvailable = true
                 cameraUI.state = "Preview"
             }

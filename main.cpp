@@ -2,9 +2,14 @@
 #include <QQuickView>
 #include <QQmlEngine>
 
+#include "CloudDetector.h"
+
 int main(int argc, char *argv[])
 {
 	QGuiApplication app(argc,argv);
+
+	qmlRegisterType<CloudDetector>("ai.lipr.clouddetector", 1, 0, "CloudDetector");
+
 	QQuickView view;
 	view.setResizeMode(QQuickView::SizeRootObjectToView);
 	// Qt.quit() called in embedded .qml by default only emits
