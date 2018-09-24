@@ -15,3 +15,8 @@ void CloudDetector::setUrl(const QUrl &url)
 {
 	_url = url;
 }
+
+void CloudDetector::submit()
+{
+	qDebug() << "Submitting" << _url;
+}

@@ -20,7 +20,7 @@ public:
 signals:
 
 public slots:
-
+	void submit();
 };
 
 #endif // CLOUDDETECTOR_H

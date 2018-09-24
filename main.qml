@@ -109,6 +109,18 @@ Rectangle {
                     onClicked: cameraUI.state = "Preview"
                     visible: captureControls.previewAvailable && cameraUI.state == "Capture"
                 }
+
+                CameraButton {
+                    text: "Submit"
+                    onClicked: detector.submit()
+                    visible: captureControls.previewAvailable && cameraUI.state == "Preview"
+                }
+
+                CameraButton {
+                    text: "Restart"
+                    onClicked: cameraUI.state = "Capture"
+                    visible: captureControls.previewAvailable && cameraUI.state == "Preview"
+                }
             }
 
             Column {
