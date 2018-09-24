@@ -13,6 +13,5 @@ QUrl CloudDetector::url() const
 
 void CloudDetector::setUrl(const QUrl &url)
 {
-//	qDebug() << url.toString();
 	_url = url;
 }

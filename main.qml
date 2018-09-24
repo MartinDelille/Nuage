@@ -38,7 +38,7 @@ Rectangle {
             onImageCaptured: {
                 cloudPreview.source = preview
                 detector.url = preview
-                stillControls.previewAvailable = true
+                captureControls.previewAvailable = true
                 cameraUI.state = "Preview"
             }
         }
@@ -63,18 +63,64 @@ Rectangle {
 
         x: 0
         y: 0
-        width: parent.width - stillControls.buttonsPanelWidth
+        width: parent.width - buttonPaneShadow.width
         height: parent.height
 
         source: camera
         autoOrientation: true
     }
 
-    CaptureControls {
-        id: stillControls
+    FocusScope {
+        id: captureControls
         anchors.fill: parent
-        camera: camera
-        visible: cameraUI.state == "Capture"
-        onPreviewSelected: cameraUI.state = "Preview"
+        property bool previewAvailable : false
+
+        Rectangle {
+            id: buttonPaneShadow
+            width: bottomColumn.width + 16
+            height: parent.height
+            anchors.top: parent.top
+            anchors.right: parent.right
+            color: Qt.rgba(0.08, 0.08, 0.08, 1)
+
+            Column {
+                anchors {
+                    right: parent.right
+                    top: parent.top
+                    margins: 8
+                }
+
+                id: buttonsColumn
+                spacing: 8
+
+                FocusButton {
+                    camera: camera
+                    visible: camera.cameraStatus == Camera.ActiveStatus && camera.focus.isFocusModeSupported(Camera.FocusAuto)
+                }
+
+                CameraButton {
+                    text: "Capture"
+                    visible: camera.imageCapture.ready && cameraUI.state == "Capture"
+                    onClicked: camera.imageCapture.capture()
+                }
+
+                CameraButton {
+                    text: "View"
+                    onClicked: cameraUI.state = "Preview"
+                    visible: captureControls.previewAvailable && cameraUI.state == "Capture"
+                }
+            }
+
+            Column {
+                anchors {
+                    bottom: parent.bottom
+                    right: parent.right
+                    margins: 8
+                }
+
+                id: bottomColumn
+                spacing: 8
+            }
+        }
     }
 }
